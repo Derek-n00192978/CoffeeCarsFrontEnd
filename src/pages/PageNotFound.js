@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 const  PageNotFound = () => {
     const location = useLocation();

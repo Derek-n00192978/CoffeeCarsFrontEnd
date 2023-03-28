@@ -24,6 +24,7 @@ const EventDisplay = (props) => {
         title = <p><b>Title:</b>{props.event.title}</p>
         description = <p><b>Description:</b>{props.event.description}</p>
         lat_long =<p><b>Lat/Long:</b>{props.event.lat_long}</p>
+        image =<>{props.image.image_path}</>
                 
     }
     return (

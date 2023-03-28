@@ -11,7 +11,7 @@ const Home = (props) => {
     const navigate = useNavigate();
     const [ user, setUser ] = useState(null);
     let token = localStorage.getItem('token');
-    
+    let fName = localStorage.getItem('fName');
     
 
     const deleteCallback = (id) => {
@@ -39,8 +39,8 @@ const Home = (props) => {
     
     ////////////////////////////////////////////////////////    
 
-     //const usersList =user.map((user) => {
-     //    return  <HomeCard key={user._id} user={user} authenticated={props.authenticated} callback={deleteCallback}/>;
+    //const usersList =user.map((user) => {
+    //    return  <HomeCard key={user._id} user={user} authenticated={props.authenticated} callback={deleteCallback}/>;
     // }
     //);
     //////////////////////////////////////////////
@@ -55,7 +55,7 @@ const Home = (props) => {
                 <div className="home">
                  <HomeCard key={user.id} user={user} authenticated={props.authenticated} callback={deleteCallback}/>  
                  
-                <h4>Hi are logged in ---- Enjoy</h4>
+                <h4>Hi {fName} are logged in ---- Enjoy</h4>
                 
                 </div> 
             )} 

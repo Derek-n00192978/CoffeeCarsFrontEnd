@@ -16,13 +16,13 @@ const EventCard = (props) => {
 
     if(props.authenticated){
         title = <p><b>Title:</b><Link to={`/events/${props.event._id}`}>{props.event.title}</Link></p>
-        image =  <>{props.event.image_path}</>
+        image = <></>
         }
     return (
         <div className='column1'>
             <Card style={{ width: '100%' }}>
                 <CardMedia
-                    image={props.event.image_path}
+                    image={`https://ca2-n00192978.s3.eu-west-1.amazonaws.com/${props.event.image_path}`}
                     component="img"
                     height="194"
                     alt="event thumbnail"

@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 /////////////////////////////////////////////
 import LoginForm from "../../components/LoginForm";
-import HomeCard from "../../components/HomeCard";
 
 //////////////////////////////////////////////
 import DashboardDisplay from "../../components/DashboardDisplay";
@@ -16,12 +15,13 @@ const Show = (props) => {
     const [ user, setUser] = useState(null);
     let token = localStorage.getItem('token');
 
+
     const deleteCallback = (id) => {
         navigate('/');
     };
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/api/users/63f4f0f3722d9aa06b789bab`, {
+        axios.get(`http://localhost:3001/api/users/auth`, {
                 headers: {
                     "Authorization": `Bearer ${token}`
                 }
@@ -60,8 +60,6 @@ const Show = (props) => {
         </div>         
         </div>
     </>
-
-        // <DashboardDisplay key={user.id} user={user} authenticated={props.authenticated} callback={deleteCallback}/>
     );
 };
 

@@ -45,7 +45,7 @@ const VehicleCard = (props) => {
                 className='MuiCardMedia-img'
                 component="img"
                 height="194"
-                image ={props.vehicle.image_path}
+                image={`https://ca2-n00192978.s3.eu-west-1.amazonaws.com/${props.vehicle.image_path}`}
                 alt="vehicle thumbnail">
                  </CardMedia>
               

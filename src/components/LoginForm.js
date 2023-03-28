@@ -39,7 +39,7 @@ const LoginForm = (props) => {
              .then((response) => {
                 console.log(response.data);
                 setErrorMessage("");
-                props.onAuthenticated(true, response.data.token)
+                props.onAuthenticated(true, response.data)
                 
              })
              .catch((err) => {

@@ -1,28 +1,28 @@
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import { useState, useEffect} from 'react';
 import Container from '@mui/material/Container';
-import './assets/css/app.css'
+import './assets/css/app.css';
 
 /* importing from the pages folder */
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 
+// Vehicles Pages
+import VehiclesIndex from './pages/vehicles/Index'; 
+import VehiclesShow from './pages/vehicles/Show';
+import VehiclesCreate from './pages/vehicles/Create';
+import VehiclesEdit from './pages/vehicles/Edit';
 
-import VehiclesIndex from './pages/vehicles/Index' 
-import VehiclesShow from './pages/vehicles/Show'
-import VehiclesCreate from './pages/vehicles/Create'
-import VehiclesEdit from './pages/vehicles/Edit'
+//Events Pages
+import EventsIndex from './pages/events/Index'; 
+import EventsShow from './pages/events/Show';
+import EventsCreate from './pages/events/Create';
+import EventsEdit from './pages/events/Edit';
 
-import EventsIndex from './pages/events/Index' 
-import EventsShow from './pages/events/Show'
-import EventsCreate from './pages/events/Create'
-import EventsEdit from './pages/events/Edit'
-
-
-import DashboardEdit from './pages/dashboards.js/Edit'
-import DashboardShow from './pages/dashboards.js/Show'
-
+//Dashboard Pages
+import DashboardEdit from './pages/dashboards.js/Edit';
+import DashboardShow from './pages/dashboards.js/Show';
 
 //Page Not Found
 import PageNotFound from './pages/PageNotFound';
@@ -41,10 +41,11 @@ const App = () => {
   }, []);
   let protectedRoutes; 
 
-  const onAuthenticated = (auth, token) => {
+  const onAuthenticated = (auth, data) => {
       setAuthenticated(auth);
       if (auth){
-          localStorage.setItem('token', token);
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('fName', data.fName);
       }
       else{
           localStorage.removeItem('token');
