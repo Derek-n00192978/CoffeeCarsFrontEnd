@@ -14,14 +14,14 @@ import CardActions from '@mui/material/CardActions';
 import ShareIcon from '@mui/icons-material/Share';
 import Item from '@mui/material/ListItem'
 import Grid from '@mui/material/Grid';
-import { green } from '@mui/material/colors';
+
 
 const HomeCard = (props) => {
   const { id } = useParams();
     const navigate = useNavigate();
     const [ user, setUser] = useState(null);
     let token = localStorage.getItem('token');
-    let name = <>{props.user.fName}</>
+    let fName = localStorage.getItem('fName');
     let image = <>{props.user.image_path}</>
     
     const deleteCallback = (id) => {
@@ -29,10 +29,7 @@ const HomeCard = (props) => {
     };
     
     
-    if(props.authenticated){
-        name = <>{props.user.fName}</> 
-                
-    }
+   
 ////////////////////////////////////////////////////////
     useEffect(() => {
       axios.get(`http://localhost:3001/api/users/${id}`, {
@@ -66,13 +63,13 @@ const HomeCard = (props) => {
             
             <CardContent>
             <p>{user}</p>
-            <p> Hi {name} welcome to CoffeeCarsQRCodes.</p>
+            <p> Hi {fName} welcome to CoffeeCarsQRCodes.</p>
                 <h2>{props.user.id}</h2>
                 <h2>{props.user.fName}</h2>
-                <Avatar sx={{ bgcolor: green[100]}}
+                <Avatar 
                 aria-label="${name}"
                 src={props.user.fName}
-                alt={name}
+                
                 />
                 
                 <CardMedia
@@ -84,14 +81,7 @@ const HomeCard = (props) => {
                 />
                      
             </CardContent>
-            <CardActions disableSpacing>
-            <IconButton aria-label="add to favorites">
-            <FavoriteIcon />
-            </IconButton>
-            <IconButton aria-label="share">
-            <ShareIcon />
-            </IconButton>
-            </CardActions>
+            
             </Card>
          </Item>
         </Grid>

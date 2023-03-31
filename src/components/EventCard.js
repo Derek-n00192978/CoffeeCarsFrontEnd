@@ -7,6 +7,10 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import IconButton from '@mui/material/IconButton';
 import CardActions from '@mui/material/CardActions';
 import ShareIcon from '@mui/icons-material/Share';
+///////Pagination//////////////////////////
+import * as React from 'react';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
 const EventCard = (props) => {
     let date = <p><b>Date:</b> {props.event.date}</p>

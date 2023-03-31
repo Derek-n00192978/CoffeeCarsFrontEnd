@@ -54,8 +54,6 @@ const Home = (props) => {
             ): (
                 <div className="home">
                  <HomeCard key={user.id} user={user} authenticated={props.authenticated} callback={deleteCallback}/>  
-                 
-                <h4>Hi {fName} are logged in ---- Enjoy</h4>
                 
                 </div> 
             )} 
@@ -65,6 +63,7 @@ const Home = (props) => {
                 <p> </p>
             </div>         
             </div>
+            <br></br>
         </>
     )
 }

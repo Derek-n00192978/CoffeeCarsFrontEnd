@@ -32,15 +32,11 @@
   padding: 16px;
   text-align: center;
   background-color: #f1f1f1;
-  border-radius: 12px;
+  border-radius: 20px;
 }
 /* Web application css items */
-.base {
-  background-color: #BCDB3E;
-}  
-.container {
-  background-color: #BCDB3E;
-}
+  
+
   
 .home {
   color: antiquewhite;
@@ -53,7 +49,6 @@
 .column1 {
   float:left;
   width: 50%;
-  background-color: #BCDB3E;
   margin-top: -4%;
 }
 .column2{
@@ -72,6 +67,8 @@
   display: table;
   clear: both;
 }
-.MuiCardMedia-img {
-  background-image: url('images/image0.jpeg');
+.fullWidth {
+  align-items: center;
+  max-width: 100%;
 }
+

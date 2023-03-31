@@ -2,6 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
+
 /////////////////////////////////////////////
 import VehicleDisplay from "../../components/VehicleDisplay";
 
@@ -35,7 +36,10 @@ const Show = (props) => {
     if(!vehicle) return "Loading...";
 
     return (
+        <>
+        
         <VehicleDisplay key={vehicle.id} vehicle={vehicle} authenticated={props.authenticated} callback={deleteCallback}/>
+        </>
     );
 };
 

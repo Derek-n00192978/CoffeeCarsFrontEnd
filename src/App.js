@@ -45,6 +45,7 @@ const App = () => {
       setAuthenticated(auth);
       if (auth){
           localStorage.setItem('token', data.token);
+          localStorage.setItem('user', data.id);
           localStorage.setItem('fName', data.fName);
       }
       else{

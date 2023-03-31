@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import { useState } from "react";
+import axios from 'axios';
 import Avatar from '@mui/material/Avatar';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -10,21 +12,70 @@ import CardActions from '@mui/material/CardActions';
 import ShareIcon from '@mui/icons-material/Share';
 import Item from '@mui/material/ListItem'
 import Grid from '@mui/material/Grid';
-import { green } from '@mui/material/colors';
+
+
+
 
 const VehicleCard = (props) => {
+  const [errors, setErrors] = useState({});
+  const [liked, setLiked] = useState({
+    "color": "default"
+  });
     let make = <>{props.vehicle.make}</>
     let model = <>{props.vehicle.model}</>
     let name = <>{props.vehicle.user.fName}</>
-    let image = <>{props.vehicle.image_path}</>
+    // let image = <>{props.vehicle.image_path}</>
+    //let id = <>{props.vehicle._id}</>
+
+    
+  console.log(props.vehicle);
    
     if(props.authenticated){
         make = <p><Link to={`/vehicles/${props.vehicle._id}`}>{props.vehicle.make}</Link></p>
-        image =  <>{props.vehicle.image_path}</>
+        // image =  <>{props.vehicle.image_path}</>
+    }
+
+
+    const updateColor = (newColor) => {
+      
+      console.log("settingColor: ", newColor);
+      setLiked(previousState => {
+        return { ...previousState, color: newColor }
+      });
+      console.log("setColor: ", newColor);
+    }
+
+    const onLike = (e) => { 
+      let user = localStorage.getItem("user");
+      console.log(user + " liked " + props.vehicle._id); 
+      let token = localStorage.getItem('token');
+      let data = {
+        "user_id" : user,
+        "vehicle_id": props.vehicle._id
       }
+      axios.post('http://localhost:3001/api/likeVehicles', data, {
+          headers: {
+              "Authorization": `Bearer ${token}`,
+              "Content-Type": 'application/json' 
+          }
+      })
+      .then(response => {
+        console.log(response.data);
+        updateColor("success");
+        // navigate('/events');
+      })
+      .catch(err=> {
+        console.log(err.response.data)
+        console.error(err);
+        setErrors(err.response.data.errors);
+      });
+    }
           
     return ( 
-      <div className='column3'>  
+      <>
+      
+      <div className='column3' data-vehicle-id={props.vehicle._id}> 
+       
       <Grid container spacing={1}>
         <Grid item xs={12}>
           <Item>
@@ -34,7 +85,7 @@ const VehicleCard = (props) => {
                 <h2>{props.vehicle.user.fName}</h2>
                 {/* <h2>{props.vehicle.user._id}</h2> */}
                 
-                <Avatar sx={{ bgcolor: green[100]}}
+                <Avatar sx={{}}
                 aria-label={name}
                 src={props.vehicle.user.fName}
                 alt={name}
@@ -60,8 +111,8 @@ const VehicleCard = (props) => {
             </CardContent>
 
             <CardActions disableSpacing>
-            <IconButton aria-label="add to favorites">
-            <ThumbUpIcon />
+            <IconButton onClick={onLike} aria-label="add to favorites">
+            <ThumbUpIcon color={liked.color} />
             </IconButton>
             <IconButton aria-label="share">
             <ShareIcon />
@@ -72,7 +123,7 @@ const VehicleCard = (props) => {
         </Grid>
       </Grid>
       </div>
-    
+      </>
     )
 };
 export default VehicleCard;

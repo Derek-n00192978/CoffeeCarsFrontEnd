@@ -12,7 +12,8 @@ import CardActions from '@mui/material/CardActions';
 import ShareIcon from '@mui/icons-material/Share';
 
 const DashboardDisplay = (props) => {
-    let fName = <p><b>Name:</b> {props.user.fName}</p>
+    let fName = localStorage.getItem('fName');
+    let id = localStorage.getItem('_id');
     let email = <p></p>
     let bio = <p></p>
     let county = <p></p>
@@ -22,7 +23,7 @@ const DashboardDisplay = (props) => {
     let image = <p></p>
 
     if(props.authenticated){
-        fName = <p><b>Name:</b>{props.user.fName}</p>
+        
         email = <p><b>Email:</b>{props.user.email}</p>
         bio = <p><b>Bio:</b>{props.user.bio}</p>
         county =<p><b>County:</b>{props.user.county}</p>
@@ -43,7 +44,7 @@ const DashboardDisplay = (props) => {
                 <CardContent>
                     <Avatar alt="Remy Sharp" src='${image}' />
                     <Typography gutterBottom variant="h5" component="div">
-                    <b>Name:</b>{props.user.fName}
+                    <b>Name:</b>{fName}
                     
                         </Typography>
                         <Typography gutterBottom variant="h5" component="div">
@@ -69,27 +70,19 @@ const DashboardDisplay = (props) => {
                         
                         
                         <Button 
-                                            component={Link} 
-                                            to={`/dashboard/63f4f0f3722d9aa06b789bab}/edit`}
-                                            startIcon={<EditIcon />}
-                                            variant='outlined'
-                                        >
-                                            Edit
-                                        </Button>
+                            component={Link} 
+                            to={`/dashboard/{id}/edit`}
+                            startIcon={<EditIcon />}
+                            variant='outlined'
+                            >
+                                Edit
+                        </Button>
                                      
                         
                         </CardContent>
-                        <CardActions disableSpacing>
-                        <IconButton aria-label="add to favorites">
-                        <FavoriteIcon />
-                        </IconButton>
-                        <IconButton aria-label="share">
-                        <ShareIcon />
-                        </IconButton>
-
-                        </CardActions>
-                        </Card>
-                        <br></br>
+                        
+                    </Card>
+                    
                 </>
             )
 };
