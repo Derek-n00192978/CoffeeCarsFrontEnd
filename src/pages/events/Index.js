@@ -1,19 +1,14 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-// import Card from '@mui/material/Card';
-// import CardContent from '@mui/material/CardContent';
-// import CardMedia from '@mui/material/CardMedia';
-// import Typography from '@mui/material/Typography';
-// import FavoriteIcon from '@mui/icons-material/Favorite';
-// import IconButton from '@mui/material/IconButton';
-// import CardActions from '@mui/material/CardActions';
-// import ShareIcon from '@mui/icons-material/Share';
+
 import Table from '@mui/material/Table';
-// import TableBody from '@mui/material/TableBody';
-// import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+///////////////////Pagination///////////////////////
+import * as React from 'react';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
 
 import EventCard from '../../components/EventCard';
@@ -46,13 +41,22 @@ const Index = (props) => {
         return <EventCard key={event.id} event={event} authenticated={props.authenticated} callback={deleteCallback}/>;
     });
     return (
-        <TableContainer>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-   <TableHead>
-     <TableRow>{ eventsList }</TableRow>
-   </TableHead>
-   </Table>
-   </TableContainer> 
+        <>
+            <TableContainer>
+                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+                <TableRow>{ eventsList }</TableRow>
+            </TableHead>
+            </Table>
+            </TableContainer>
+            {/* Pagination start*/}
+            <div className='fullWidth'>
+                <Stack spacing={2}>
+                <Pagination count={5} color="warning" />
+                </Stack>
+            </div>
+            {/*Pagination end*/}
+        </>
     );
    
 };

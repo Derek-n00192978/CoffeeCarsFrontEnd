@@ -9,7 +9,9 @@ const Home = (props) => {
     
     const { id } = useParams();
     const navigate = useNavigate();
-    const [ user, setUser ] = useState(null);
+    const [ users, setUsers ] = useState(null);
+    const [ authUser, setAuthUser ] = useState(null);
+
     let token = localStorage.getItem('token');
     let fName = localStorage.getItem('fName');
     
@@ -26,7 +28,7 @@ const Home = (props) => {
         })
              .then((response) =>{
                 console.log(response.data);
-                setUser(response.data)
+                setUsers(response.data)
              })
              .catch((err) => {
                 console.error(err);
@@ -35,7 +37,24 @@ const Home = (props) => {
         console.log("mounted");     
     }, [token, id]);
 
-    if(!user) return 'Loading...';
+
+    useEffect(() => {
+        axios.get(`http://localhost:3001/api/users/auth`, {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
+             .then((response) =>{
+                console.log(response.data);
+                setAuthUser(response.data)
+             })
+             .catch((err) => {
+                console.error(err);
+                console.log(err.response.data.message);
+             })
+    }, []);
+
+    if(!users) return 'Loading...';
     
     ////////////////////////////////////////////////////////    
 
@@ -53,7 +72,7 @@ const Home = (props) => {
                 <LoginForm onAuthenticated={props.onAuthenticated}/>
             ): (
                 <div className="home">
-                 <HomeCard key={user.id} user={user} authenticated={props.authenticated} callback={deleteCallback}/>  
+                 <HomeCard key={users.id} user={users} authenticated={props.authenticated} callback={deleteCallback}/>  
                 
                 </div> 
             )} 

@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import { useState } from "react";
+import axios from 'axios';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -13,6 +15,10 @@ import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 
 const EventCard = (props) => {
+  const [errors, setErrors] = useState({});
+  const [liked, setLiked] = useState({
+    "color": "default"
+  });
     let date = <p><b>Date:</b> {props.event.date}</p>
     let title = <p><b>Title:</b>{props.event.title}</p>
     let description = <p><b>Description:</b>{props.event.description}</p>
@@ -22,6 +28,41 @@ const EventCard = (props) => {
         title = <p><b>Title:</b><Link to={`/events/${props.event._id}`}>{props.event.title}</Link></p>
         image = <></>
         }
+
+    const updateColor = (newColor) => {
+      
+      console.log("settingColor: ", newColor);
+      setLiked(previousState => {
+        return { ...previousState, color: newColor }
+      });
+      console.log("setColor: ", newColor);
+    }
+
+    const onLike = (e) => { 
+      let user = localStorage.getItem("user");
+      console.log(user + " liked " + props.event._id); 
+      let token = localStorage.getItem('token');
+      let data = {
+        "user_id" : user,
+        "event_id": props.event._id
+      }
+      axios.post('http://localhost:3001/api/likeEvents', data, {
+          headers: {
+              "Authorization": `Bearer ${token}`,
+              "Content-Type": 'application/json' 
+          }
+      })
+      .then(response => {
+        console.log(response.data);
+        updateColor("warning");
+        // navigate('/events');
+      })
+      .catch(err=> {
+        console.log(err.response.data)
+        console.error(err);
+        setErrors(err.response.data.errors);
+      });
+    }    
     return (
         <div className='column1'>
             <Card style={{ width: '100%' }}>
@@ -43,8 +84,8 @@ const EventCard = (props) => {
                     </Typography>    
                 </CardContent>
                 <CardActions disableSpacing>
-                    <IconButton aria-label="add to favorites">
-                    <ThumbUpIcon />
+                    <IconButton onClick={onLike}aria-label="add to favorites">
+                    <ThumbUpIcon color={liked.color}/>
                     </IconButton>
                     <IconButton aria-label="share">
                     <ShareIcon />
