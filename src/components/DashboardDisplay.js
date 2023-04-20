@@ -42,7 +42,7 @@ const DashboardDisplay = (props) => {
                     title="vehicle display card"
                 />
                 <CardContent>
-                    <Avatar alt="Remy Sharp" src='${image}' />
+                    
                     <Typography gutterBottom variant="h5" component="div">
                     <b>Name:</b>{fName}
                     

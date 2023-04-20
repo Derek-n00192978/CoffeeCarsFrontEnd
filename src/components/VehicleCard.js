@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { useState } from "react";
+//import { useState } from "react";
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Avatar from '@mui/material/Avatar';
 import Card from '@mui/material/Card';
@@ -18,24 +19,57 @@ import Grid from '@mui/material/Grid';
 
 const VehicleCard = (props) => {
   const [errors, setErrors] = useState({});
+  
+  const [ authUser, setAuthUser ] = useState(null);
+  console.log("AuthUser: ", authUser);
   const [liked, setLiked] = useState({
     "color": "default"
   });
     let make = <>{props.vehicle.make}</>
     let model = <>{props.vehicle.model}</>
     let name = <>{props.vehicle.user?.fName}</>
+    //just hardcoding the ID for user Friday
+    //you need to get the current user for real
+   // let curUser = 640b18fb68d3690bfd5284e2;
+  
     // let image = <>{props.vehicle.image_path}</>
     //let id = <>{props.vehicle._id}</>
 
-    
+  
+  console.log("=======Vehicle props:========")
   console.log(props.vehicle);
-   
+  console.log(props.vehicle._id);
+  console.log("Vehicle likes")
+ //console.log(props.vehicle.likes);
+
+ //experiment
+ 
+  let tempObj = props.vehicle.likes
+  if (tempObj.length > 0) {
+  console.log("Vehicle IDs that are liked by user_id:")
+  for(let i=0; i < tempObj.length; i++){
+      console.log(tempObj[i].user_id)
+      //compare the user_ids that like this particular car with the logged in user_id
+      //if they match -> change colour of thumbs up icon
+    }
+  }
+
+ /*tempObj.map((data, idx) => (
+     //console.log("Liked vehicle id: ", data.vehicle_id)
+     if (props.vehicle._id == data.vehicle_id) {
+       console.log("you like the vehicle: ")
+     }
+   ))
+*/
+ //experiment ends
+
+
     if(props.authenticated){
       make = <p><Link to={`/vehicles/${props.vehicle._id}`}>{props.vehicle.make}</Link></p>
       // image =  <>{props.vehicle.image_path}</>
     }
 
-
+    ////
     const updateColor = (newColor) => {
       
       console.log("settingColor: ", newColor);
@@ -80,17 +114,9 @@ const VehicleCard = (props) => {
                 <Card style={{ width: '17rem' }}>
                 
                 <CardContent>
-                  <h2>{props.vehicle.user?.fName}</h2>
-                  {/* <h2>{props.vehicle.user._id}</h2> */}
-                    
-                  <Avatar sx={{}}
-                    aria-label={name}
-                    src={props.vehicle.user?.fName}
-                    alt={name}
-                  />
-                    
+                  <h2>{props.vehicle.user?.fName}</h2>                 
+                                      
                   <CardMedia
-                    
                     className='MuiCardMedia-img'
                     component="img"
                     height="194"
@@ -112,9 +138,7 @@ const VehicleCard = (props) => {
                   <IconButton onClick={onLike} aria-label="add to favorites">
                     <ThumbUpIcon color={liked.color} />
                   </IconButton>
-                  <IconButton aria-label="share">
-                    <ShareIcon />
-                  </IconButton>
+                  
                 </CardActions>
               </Card>
             </Item>

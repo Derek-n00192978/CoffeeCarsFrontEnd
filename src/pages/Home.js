@@ -27,7 +27,10 @@ const Home = (props) => {
             }
         })
              .then((response) =>{
+                console.log("Axios response.All users: ");
                 console.log(response.data);
+                
+
                 setUsers(response.data)
              })
              .catch((err) => {
@@ -73,7 +76,6 @@ const Home = (props) => {
             ): (
                 <div className="home">
                  <HomeCard key={users.id} user={users} authenticated={props.authenticated} callback={deleteCallback}/>  
-                
                 </div> 
             )} 
             

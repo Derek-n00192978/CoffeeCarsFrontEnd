@@ -19,6 +19,7 @@ const Index = (props) => {
     useEffect(() => {
         axios.get('http://localhost:3001/api/events')
              .then((response) =>{
+                console.log("Axios returns all events")
                 console.log(response.data);
                 setEvents(response.data)
              })

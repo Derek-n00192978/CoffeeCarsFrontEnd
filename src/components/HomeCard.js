@@ -19,7 +19,11 @@ const HomeCard = (props) => {
   let token = localStorage.getItem('token');
   let fName = localStorage.getItem('fName');
   let image = <>{props.user.image_path}</>
-    
+
+ // console.log("TEST TEST----------");
+ // let favID = props.user._id
+ // console.log(favID)
+
   const deleteCallback = (id) => {
     navigate('/events');
   };
@@ -52,41 +56,27 @@ const HomeCard = (props) => {
   //////////////////////////////////////////////////////    
     return (     
     <>       
-      <div className='column1'>  
+      <div className='column50'>  
         <Grid container spacing={1}>
           <Grid item xs={12}>
             <Item>
               <Card style={{ width: '25rem' }}>
                 <CardContent>
-                  <p>{user}</p>
-                  <p> Hi {fName} welcome to CoffeeCarsQRCodes.</p>
-                  <h2>{props.user.id}</h2>
-                  <h2>{props.user.fName}</h2>
-                  <Avatar 
-                    src={props.user.fName}  
-                  />  
-                <CardMedia
-                  className='MuiCardMedia-img'
-                  component="img"
-                  height="77"
-                  image={image}
-                />       
+                  <p> Hi {fName} welcome to CoffeeCarsQRCodes.</p>       
                 </CardContent>
               </Card>
             </Item>
           </Grid>
         </Grid>
       </div>
-      
+      <br></br>
       <div className='column1'>  
         <Grid container spacing={1}>
           <Grid item xs={12}>
             <Item>
               <Card style={{ width: '25rem' }}>
                 <CardContent>
-                  <p>{user}</p>
-                  <p> Here are some of the vehicles {fName} liked.</p>               
-
+                  <p>Vehicles {fName} liked.</p>               
                 </CardContent>           
               </Card>
             </Item>
@@ -100,9 +90,7 @@ const HomeCard = (props) => {
             <Item>
               <Card style={{ width: '25rem' }}>
                 <CardContent>
-                  <p>{user}</p>
-                  <p> Here are some of the Events {fName} liked.</p>               
-
+                  <p>Events {fName} liked.</p>               
                 </CardContent>           
               </Card>
             </Item>

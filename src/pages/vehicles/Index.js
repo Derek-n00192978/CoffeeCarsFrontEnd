@@ -18,6 +18,7 @@ const Index = (props) => {
   useEffect(() => {
     axios.get('http://localhost:3001/api/vehicles')
       .then((response) =>{
+        console.log("Axios returns All Vehicles")
         console.log(response.data);
         setVehicles(response.data)
       })
@@ -36,7 +37,8 @@ const Index = (props) => {
 
       setVehicles(vehiclesNew);
     };
-
+    console.log("props==========");
+    console.log(props);
     const vehiclesList =vehicles.map((vehicle) => {
       return <VehicleCard key={vehicle._id} vehicle={vehicle} authenticated={props.authenticated} callback={deleteCallback}/>;
     });

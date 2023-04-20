@@ -49,8 +49,6 @@ const Show = (props) => {
         ): (
             <div className="home">
              <DashboardDisplay key={user.id} user={user} authenticated={props.authenticated} callback={deleteCallback}/>  
-             
-            <h4>Hi are logged in ---- Enjoy</h4>
             </div> 
         )} 
         

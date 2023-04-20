@@ -84,12 +84,9 @@ const EventCard = (props) => {
                     </Typography>    
                 </CardContent>
                 <CardActions disableSpacing>
-                    <IconButton onClick={onLike}aria-label="add to favorites">
+                  <IconButton onClick={onLike}aria-label="add to favorites">
                     <ThumbUpIcon color={liked.color}/>
-                    </IconButton>
-                    <IconButton aria-label="share">
-                    <ShareIcon />
-                    </IconButton>
+                  </IconButton>
                 </CardActions>
             </Card>
             <br></br>

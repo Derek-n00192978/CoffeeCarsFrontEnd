@@ -109,7 +109,7 @@ const Edit = () => {
     if(!user) return "loading...";
     return (
         <>
-            <h2>Edit Page</h2>
+            <h2>Edit you details Page</h2>
             <div className='form-group'>
             <TextField 
                 variant='filled' 

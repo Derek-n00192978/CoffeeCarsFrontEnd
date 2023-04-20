@@ -30,14 +30,7 @@ const DashboardCard = (props) => {
                 <Typography gutterCentre variant="h5" component="div">
                     {name}
                 </Typography>
-                <Avatar alt="Remy Sharp" src={props.user.image_path} />
                 
-                <CardMedia
-                component="img"
-                height="194"
-                image={image}
-                
-                />
                    
             </CardContent>
             
