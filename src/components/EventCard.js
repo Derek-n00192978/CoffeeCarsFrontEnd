@@ -64,7 +64,7 @@ const EventCard = (props) => {
       });
     }    
     return (
-        <div className='column1'>
+        <div className='column1' data-event-id={props.event._id}>
             <Card style={{ width: '100%' }}>
                 <CardMedia
                     image={`https://ca2-n00192978.s3.eu-west-1.amazonaws.com/${props.event.image_path}`}

@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 //import { useState } from "react";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import Avatar from '@mui/material/Avatar';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -10,7 +9,6 @@ import Typography from '@mui/material/Typography';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import IconButton from '@mui/material/IconButton';
 import CardActions from '@mui/material/CardActions';
-import ShareIcon from '@mui/icons-material/Share';
 import Item from '@mui/material/ListItem'
 import Grid from '@mui/material/Grid';
 

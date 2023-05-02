@@ -42,11 +42,14 @@ const App = () => {
   let protectedRoutes; 
 
   const onAuthenticated = (auth, data) => {
+    console.log(data);
       setAuthenticated(auth);
       if (auth){
           localStorage.setItem('token', data.token);
           localStorage.setItem('user', data.id);
           localStorage.setItem('fName', data.fName);
+          localStorage.setItem('likes', data.likes);
+
       }
       else{
           localStorage.removeItem('token');

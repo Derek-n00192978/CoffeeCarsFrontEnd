@@ -34,13 +34,10 @@ const Show = (props) => {
 
     if(!event) return "Loading...";
 
-    return (
-        
-          
+    return (   
+        <>  
         <EventDisplay className='row-cols-2' key={event.id} event={event} authenticated={props.authenticated} callback={deleteCallback}/>
-        
-        
-    
+        </>
     );
 };
 

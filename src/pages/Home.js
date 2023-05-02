@@ -55,7 +55,7 @@ const Home = (props) => {
                 console.error(err);
                 console.log(err.response.data.message);
              })
-    }, []);
+    }, [token]);
 
     if(!users) return 'Loading...';
     
@@ -75,7 +75,7 @@ const Home = (props) => {
                 <LoginForm onAuthenticated={props.onAuthenticated}/>
             ): (
                 <div className="home">
-                 <HomeCard key={users.id} user={users} authenticated={props.authenticated} callback={deleteCallback}/>  
+                 <HomeCard key={users.id} authUser={authUser} authenticated={props.authenticated} callback={deleteCallback}/>  
                 </div> 
             )} 
             
